@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/aldairzp/wsl-system-tray/assets"
-	"github.com/getlantern/systray"
+	"github.com/energye/systray"
 )
 
 func SystemTrayRun() {
@@ -20,32 +20,27 @@ func onReady() {
 	systray.SetIcon(initIcon)
 
 	mStartWSL := systray.AddMenuItem("Start WSL", "start WSL")
+	mStartWSL.Click(func() {
+		systray.SetIcon(assets.WhileIcono)
+		fmt.Println("started")
+		systray.SetIcon(assets.OnIcono)
+	})
 	systray.AddSeparator()
 
 	mStopWSL := systray.AddMenuItem("Stop WSL", "stop WSL")
+	mStopWSL.Click(func() {
+		systray.SetIcon(assets.WhileIcono)
+		fmt.Println("ended")
+		systray.SetIcon(assets.OffIcono)
+	})
+	mStopWSL.SetIcon(assets.OnIcono)
+
 	systray.AddSeparator()
 
-	mSalir := systray.AddMenuItem("Exit", "Exit")
-
-	go func() {
-		for {
-			select {
-			case <-mStartWSL.ClickedCh:
-				systray.SetIcon(assets.WhileIcono)
-				fmt.Println("started")
-				systray.SetIcon(assets.OnIcono)
-
-			case <-mStopWSL.ClickedCh:
-				systray.SetIcon(assets.WhileIcono)
-				fmt.Println("ended")
-				systray.SetIcon(assets.OffIcono)
-
-			case <-mSalir.ClickedCh:
-				systray.Quit()
-				return
-			}
-		}
-	}()
+	mSalir := systray.AddMenuItemCheckbox("Exit", "Exit", true)
+	mSalir.Click(func() {
+		systray.Quit()
+	})
 }
 
 func onExit() {
