@@ -16,3 +16,6 @@ var CircleRunning []byte
 
 //go:embed icons/circle_stop.ico
 var CircleStop []byte
+
+//go:embed icons/circle_while.ico
+var CircleWhile []byte

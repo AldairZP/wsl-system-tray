@@ -25,7 +25,7 @@ func onReady() {
 	mToggleWSL := systray.AddMenuItem("WSL", "Toggle WSL")
 	mToggleWSL.Click(func() {
 		systray.SetIcon(assets.WhileIcono)
-
+		mToggleWSL.SetIcon(assets.CircleWhile)
 		select {
 		case ch := <-isInProcess:
 			if ch {
@@ -45,6 +45,7 @@ func onReady() {
 	mToggleDocker := systray.AddMenuItem("Docker", "Toggle Docker")
 	mToggleDocker.Click(func() {
 		systray.SetIcon(assets.WhileIcono)
+		mToggleDocker.SetIcon(assets.CircleWhile)
 		select {
 		case ch := <-isInProcess:
 			if ch {
