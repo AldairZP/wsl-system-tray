@@ -1,6 +1,8 @@
 package main
 
-import sytemtray "github.com/aldairzp/wsl-system-tray/internal/sytem_tray"
+import (
+	sytemtray "github.com/aldairzp/wsl-system-tray/internal/sytem_tray"
+)
 
 func main() {
 

@@ -35,6 +35,14 @@ func StopDocker() error {
 	return err
 }
 
+func ToggleDocker(isActive bool) {
+	if isActive {
+		StopDocker()
+		return
+	}
+	StartDocker()
+}
+
 func StartWSL() error {
 	err := executeCommand("wsl", "true")
 	return err
@@ -43,4 +51,12 @@ func StartWSL() error {
 func StopWSL() error {
 	err := executeCommand("wsl", "--shutdown")
 	return err
+}
+
+func ToggleWSL(isActive bool) {
+	if isActive {
+		StopWSL()
+		return
+	}
+	StartWSL()
 }

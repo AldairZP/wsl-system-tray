@@ -1,6 +1,7 @@
 package monitoring
 
 import (
+	"fmt"
 	"os/exec"
 	"time"
 
@@ -14,7 +15,7 @@ func ProcessIsActive(processName string) bool {
 	cmd := exec.Command(
 		"powershell",
 		"-Command",
-		"Get-Process ", processName, " -ErrorAction Stop",
+		fmt.Sprintf(`Get-Process -Name "%s" -ErrorAction Stop`, processName),
 	)
 	cmd.SysProcAttr = &windows.SysProcAttr{HideWindow: true}
 
